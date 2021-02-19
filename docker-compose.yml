@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  # Postgresql Database
+  db:
+    image: postgres:13.1-alpine
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+  #  API
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    environment:
+      # DJANGO PROJECT
+      - PROJECT_SECRET_KEY=${PROJECT_SECRET_KEY}
+      - ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS}
+      - BACKEND_STRIPE_ID=${BACKEND_STRIPE_ID}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+
+      # AWS S3
+      - PROJECT_AWS_ACCESS_KEY_ID=${PROJECT_AWS_ACCESS_KEY_ID}
+      - PROJECT_AWS_SECRET_ACCESS_KEY=${PROJECT_AWS_SECRET_ACCESS_KEY}
+      - PROJECT_AWS_STORAGE_BUCKET_NAME=${PROJECT_AWS_STORAGE_BUCKET_NAME}
+
+      # DATABASE
+      - DATABASE_ENGINE=${DATABASE_ENGINE}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_HOST=${DATABASE_HOST}
+
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+  # Frontend
+  frontend:
+    restart: always
+    env_file:
+      - .env
+    build:
+      context: ./frontend
+      args:
+        - REACT_APP_STRIPE_ID=${STRIPE_ID}
+        - REACT_APP_API_HOST=${API_HOST}
+    depends_on:
+      - db
+      - backend
+    ports:
+      - 80:80

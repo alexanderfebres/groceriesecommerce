@@ -1,0 +1,44 @@
+:root {
+    --white: #fff;
+    --green: #135200;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+.breadcrumb-title {
+    margin-top: -7rem;
+    color: var(--white);
+}
+
+.page {
+    display: inline-block;
+    color: var(--green);
+    font-weight: bold;
+}
+
+.home-link {
+    color: var(--white);
+}
+
+@media screen and (max-width:756px) {
+    .breadcrumb-title {
+        margin-top: -4rem;
+        font-size: 14px;
+    }
+    .breadcrumb-container {
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width:576px) {
+    .breadcrumb-title {
+        margin-top: -3rem;
+        font-size: 10px;
+    }
+    .breadcrumb-container {
+        margin-top: 20px;
+    }
+}

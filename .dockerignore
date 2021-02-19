@@ -1,0 +1,4 @@
+/backend/env
+/.env
+/backend/src/db.sqlite3
+/frontend/node_modules

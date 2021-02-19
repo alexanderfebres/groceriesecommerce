@@ -1,0 +1,203 @@
+:root {
+    --lightgray: #fafafa;
+    --darkgray: #262626;
+    --white: #fff;
+    --lightgreen: #d9f7be;
+    --green: #73d13d;
+    --brightred: #cf1322;
+    --lime: #3f6600;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+.nav-container {
+    width: 100%;
+    padding: 1;
+    background-color: var(--lightgray);
+}
+
+.navbar-logo {
+    color: var(--darkgray);
+    justify-self: start;
+    margin-left: 20px;
+}
+
+.navbar {
+    display: grid;
+    grid-template-columns: 0.1fr auto 1fr;
+    align-items: center;
+    max-width: 1728;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.nav-menu {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    text-align: center;
+    width: 70%;
+    justify-self: end;
+    margin-top: 20px;
+}
+
+.nav-links {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    color: var(--darkgray);
+    font-size: 16px;
+    text-align: left;
+    margin-left: -100px;
+}
+
+.nav-links:hover {
+    color: var(--green);
+    transition: all 0.2s ease-out;
+}
+
+.nav-links-auth {
+    color: var(--darkgray);
+    background-color: var(--lightgreen);
+    font-size: 16px;
+    padding: 6px 16px;
+    border-radius: 4px;
+}
+
+.nav-links-auth:hover {
+    background-color: transparent;
+    color: var(--darkgray);
+    padding: 6px 16px;
+    border: solid 1px var(--lime);
+    transition: all 0.2s ease-out;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background: var(--lime);
+}
+
+@media screen and (max-width: 768px) {
+    .hide-on-md {
+        opacity: 0;
+    }
+    .navbar {
+        width: 100%;
+    }
+    .nav-container {
+        position: relative;
+    }
+    .nav-menu {
+        display: grid;
+        grid-template-columns: auto;
+        background-color: var(--lime);
+        margin: 0;
+        width: 70%;
+        position: absolute;
+        top: 50px;
+        z-index: 1;
+        left: -100%;
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+    .nav-links {
+        display: table;
+        text-align: center;
+        color: var(--darkgray);
+        line-height: 40px;
+        width: 100%;
+    }
+    .nav-links:hover {
+        background-color: var(--lime);
+        color: var(--white);
+        transition: all 0.2s ease-out
+    }
+    .nav-links-auth {
+        border: none;
+        padding: 0;
+        border-radius: 0;
+        display: table;
+        line-height: 40px;
+        width: 100%;
+        text-align: center;
+        background-color: var(--lime);
+        color: var(--white);
+        transition: all 0.4s ease-out;
+    }
+    .nav-links-auth:hover {
+        border: none;
+        padding: 0;
+        border-radius: 0;
+        background-color: var(--brightred);
+        color: var(--white);
+        transition: all 0.4s ease-out;
+    }
+    #mobile-menu {
+        position: absolute;
+        top: 15%;
+        right: 15%;
+        transform: translate(5%, 20%);
+    }
+    .menu-toggle .bar {
+        display: block;
+        cursor: pointer;
+    }
+    .nav-menu.active {
+        background: var(--lightgray);
+        left: 0;
+        opacity: 1;
+        transition: all 0.5s ease;
+    }
+    #mobile-menu.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    #mobile-menu.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    #mobile-menu.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+@media screen and (max-width:576px) {
+    .search-bar {
+        display: none;
+    }
+    .breadcrumb-title {
+        margin-top: 4rem;
+        font-size: 12px;
+    }
+    .breadcrumb-container {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width:756px) {
+    .breadcrumb-title {
+        margin-top: 3rem;
+        font-size: 14px;
+    }
+    .breadcrumb-container {
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width:415px) {
+    .breadcrumb-title {
+        margin-top: 4rem;
+        font-size: 10px;
+    }
+    .breadcrumb-container {
+        margin-top: 20px;
+    }
+}
